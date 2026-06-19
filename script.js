@@ -362,13 +362,7 @@ if(leadPopup){
 
     window.addEventListener('load', () => {
 
-        if(
-            (window.location.pathname.endsWith("index.html") ||
-             window.location.pathname === "/" ||
-             window.location.pathname === "") &&
-
-            !sessionStorage.getItem("prestoPopupShown")
-        ){
+        if(!sessionStorage.getItem("prestoPopupShown")){
 
             setTimeout(() => {
 
@@ -383,6 +377,8 @@ if(leadPopup){
         }
 
     });
+
+}
 
     closePopupBtn.addEventListener('click', () => {
 
