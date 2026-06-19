@@ -409,6 +409,472 @@ section h2{
     background:#1d4ed8;
 }
 
+/* ====================================
+   PRESTO LEAD POPUP
+==================================== */
+
+.lead-popup{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    z-index:99999;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.4s ease;
+}
+
+.lead-popup.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.lead-popup-content{
+
+    width:min(90%,480px);
+
+    background:rgba(15,15,15,.9);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.4);
+}
+
+.lead-popup-content h2{
+    margin-bottom:12px;
+    font-size:2rem;
+}
+
+.lead-popup-content p{
+    color:#cfcfcf;
+    margin-bottom:25px;
+    line-height:1.7;
+}
+
+.lead-popup-content input{
+    width:100%;
+
+    padding:15px 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    margin-bottom:15px;
+}
+
+.lead-popup-content input:focus{
+    outline:1px solid #2563eb;
+}
+
+#joinPrestoBtn{
+    width:100%;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+#joinPrestoBtn:hover{
+    background:#1d4ed8;
+}
+
+.lead-close-btn{
+    position:absolute;
+
+    top:12px;
+    right:16px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+.success-popup{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.4s;
+
+    z-index:99999;
+}
+
+.success-popup.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.success-popup-content{
+    width:min(90%,420px);
+
+    background:rgba(15,15,15,.95);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:35px 30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:2rem;
+    font-weight:800;
+
+    color:#fff;
+}
+
+.success-popup h2{
+    margin-bottom:12px;
+}
+
+.success-popup p{
+    color:#cfcfcf;
+    margin-bottom:25px;
+}
+
+.success-popup button{
+    width:100%;
+
+    border:none;
+
+    background:#2563eb;
+    color:#fff;
+
+    padding:14px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.error-icon{
+    width:70px;
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#dc2626;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:2rem;
+    font-weight:800;
+}
+
+.warning-icon{
+    width:70px;
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#f59e0b;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:2rem;
+    font-weight:800;
+}
+
+/* ====================================
+   CONTACT PAGE
+==================================== */
+
+.contact-hero{
+    padding-top:140px;
+    padding-bottom:60px;
+    text-align:center;
+}
+
+.contact-subtitle{
+    max-width:700px;
+    margin:auto;
+    color:#fff;
+    font-weight:600;
+}
+
+.contact-section{
+    padding-top:20px;
+}
+
+.contact-grid{
+    width:min(1200px,90%);
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+}
+
+.contact-card{
+    background:rgba(20,20,20,.65);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.contact-card h3{
+    margin-bottom:15px;
+}
+
+.contact-form-section{
+    padding-top:40px;
+}
+
+.contact-form-container{
+    width:min(800px,90%);
+    margin:auto;
+
+    background:rgba(20,20,20,.65);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:40px;
+}
+
+.contact-form-container h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    padding:16px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    color:white;
+}
+
+.contact-form textarea{
+    height:180px;
+    resize:none;
+}
+
+.map-section{
+    width:min(1200px,90%);
+    margin:50px auto;
+}
+
+.map-section iframe{
+    width:100%;
+    height:400px;
+
+    border:none;
+
+    border-radius:24px;
+}
+
+.contact-hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.contact-hero .hero-content{
+    max-width:800px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.contact-subtitle{
+    max-width:700px;
+    margin:20px auto 0;
+    text-align:center;
+}
+
+/* =========================
+   PREMIUM MAP
+========================= */
+
+.map-card{
+
+    background:rgba(15,15,15,.65);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+}
+
+#prestoMap{
+
+    width:100%;
+    height:500px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.map-btn-wrap{
+    text-align:center;
+    margin-top:20px;
+}
+
+.leaflet-popup-content-wrapper{
+    background:#111;
+    color:#fff;
+    border-radius:15px;
+}
+
+.leaflet-popup-tip{
+    background:#111;
+}
+
+.custom-popup{
+    text-align:center;
+}
+
+.custom-popup h3{
+    color:#e53935;
+    margin-bottom:8px;
+}
+
+.custom-popup p{
+    color:#000;
+    font-weight:700;
+}
+@media(max-width:768px){
+
+    #prestoMap{
+        height:350px;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-form-container{
+        padding:25px;
+    }
+
+    .map-section iframe{
+        height:300px;
+    }
+}
 
 
 /* =========================
@@ -416,6 +882,15 @@ section h2{
 ========================= */
 
 @media (max-width: 768px){
+  
+    .lead-popup-content{
+        padding:28px 20px;
+    }
+
+    .lead-popup-content h2{
+        font-size:1.7rem;
+    }
+
 
     .nav-links{
         position:fixed;
