@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusive Offers | PRESTO</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<video class="site-bg-video" autoplay muted loop playsinline>
+    <source src="assets/videos/presto-hero.mp4" type="video/mp4">
+</video>
+
+<header class="navbar">
+
+    <div class="logo">
+        <img src="assets/images/presto-logo.png" alt="PRESTO">
+    </div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="offers.html">Exclusive Offers</a>
+        <a href="category.html">Category</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<section class="offers-hero">
+    <div class="hero-content">
+        <span class="badge">LIMITED PERIOD DEALS</span>
+
+        <h1>Exclusive Offers</h1>
+
+        <p class="offers-subtitle">
+            Premium stamping solutions with special pricing for businesses,
+            institutions and bulk orders.
+        </p>
+    </div>
+</section>
+
+<section class="offers-grid">
+
+    <div class="offer-card">
+        <h3>Shiny Stamps</h3>
+        <p>Renowned for precision engineering and durability,
+        Shiny self-inking stamps deliver crisp impressions,
+        smooth operation and long service life for offices,
+        institutions and professionals.</p>
+
+        <button class="offer-btn"
+                onclick="showOffers('shiny')">
+            Show Offers
+        </button>
+    </div>
+
+    <div class="offer-card presto">
+        <h3>Presto Stamps</h3>
+        <p>Trusted by businesses across India, PRESTO offers
+        premium self-inking, date and numbering stamps
+        designed for daily use, reliability and consistent
+        impression quality.</p>
+
+        <button class="offer-btn"
+                onclick="showOffers('presto')">
+            Show Offers
+        </button>
+    </div>
+
+    <div class="offer-card">
+        <h3>Norish Inks</h3>
+        <p>High-performance German stamp inks formulated for
+        vibrant, fast-drying and long-lasting impressions on
+        paper, documents and specialized marking applications.</p>
+
+        <button class="offer-btn"
+                onclick="showOffers('norish')">
+            Show Offers
+        </button>
+    </div>
+
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        BESPOKE INNOVATIONS PVT. LTD. |
+        Ganganagar |
+        Doltala More |
+        Kolkata |
+        +91 9007571931
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
