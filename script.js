@@ -1,1120 +1,704 @@
-:root{
-    --bg:#070707;
-    --white:#ffffff;
-    --muted:#b8bcc7;
-    --blue:#2563eb;
-    --glass:rgba(255,255,255,.06);
+/* =====================================
+   PRESTO OFFICE AUTOMATIONS
+   Premium Animation System
+===================================== */
+const SUPABASE_URL =
+"https://luypflhqfvxgylmqvjov.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_6zENG3qzHDIkLUcS7GrUaA_shpteFT6";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* Lenis Smooth Scroll */
+
+const lenis = new Lenis({
+  duration: 1.2,
+  smoothWheel: true,
+  wheelMultiplier: 1,
+  touchMultiplier: 2
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+requestAnimationFrame(raf);
+
+/* Register GSAP */
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* Cursor Follower */
+
+const cursor = document.querySelector(".cursor");
+
+window.addEventListener("mousemove", (e) => {
+
+  gsap.to(cursor, {
+    x: e.clientX,
+    y: e.clientY,
+    duration: 0.15,
+    ease: "power2.out"
+  });
+
+});
+
+/* Hero Animation */
+
+gsap.from(".hero-content", {
+  opacity: 0,
+  y: 80,
+  duration: 1.5,
+  ease: "power4.out"
+});
+
+gsap.from(".hero h1", {
+  opacity: 0,
+  y: 100,
+  duration: 1.4,
+  delay: .2
+});
+
+gsap.from(".hero p", {
+  opacity: 0,
+  y: 50,
+  duration: 1.2,
+  delay: .5
+});
+
+gsap.from(".hero-buttons", {
+  opacity: 0,
+  y: 50,
+  duration: 1.2,
+  delay: .7
+});
+
+/* Navbar Blur */
+
+window.addEventListener("scroll", () => {
+
+  const nav = document.querySelector(".navbar");
+
+  if (window.scrollY > 100) {
+
+    nav.style.background =
+      "rgba(0,0,0,.75)";
+
+  } else {
+
+    nav.style.background =
+      "rgba(0,0,0,.35)";
+
+  }
+
+});
+
+/* Reveal Animations */
+
+const revealItems = document.querySelectorAll(
+  ".product-card, .glass-card, .testimonial-card, .step"
+);
+
+revealItems.forEach((item) => {
+
+  gsap.from(item, {
+
+    scrollTrigger: {
+      trigger: item,
+      start: "top 85%"
+    },
+
+    opacity: 0,
+    y: 80,
+    duration: 1,
+    ease: "power3.out"
+
+  });
+
+});
+
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if(menuBtn && navLinks){
+
+    menuBtn.addEventListener('click', () => {
+
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+
+        link.addEventListener('click', () => {
+
+            navLinks.classList.remove('active');
+            menuBtn.classList.remove('active');
+
+        });
+
+    });
+
 }
 
-html{
-    scroll-behavior:smooth;
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+/* Product Card Hover */
+
+document.querySelectorAll(".product-card")
+.forEach((card) => {
+
+  card.addEventListener("mousemove", (e) => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x =
+      e.clientX - rect.left;
+
+    const y =
+      e.clientY - rect.top;
+
+    const rotateY =
+      ((x / rect.width) - 0.5) * 20;
+
+    const rotateX =
+      ((y / rect.height) - 0.5) * -20;
+
+    gsap.to(card, {
+      rotateX,
+      rotateY,
+      duration: .4
+    });
+
+  });
+
+  card.addEventListener("mouseleave", () => {
+
+    gsap.to(card, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: .5
+    });
+
+  });
+
+});
+
+/* Button Magnetic Effect */
+
+document.querySelectorAll(".btn")
+.forEach((button) => {
+
+  button.addEventListener("mousemove", (e) => {
+
+    const rect =
+      button.getBoundingClientRect();
+
+    const x =
+      e.clientX - rect.left - rect.width / 2;
+
+    const y =
+      e.clientY - rect.top - rect.height / 2;
+
+    gsap.to(button, {
+      x: x * .2,
+      y: y * .2,
+      duration: .3
+    });
+
+  });
+
+  button.addEventListener("mouseleave", () => {
+
+    gsap.to(button, {
+      x: 0,
+      y: 0,
+      duration: .4
+    });
+
+  });
+
+});
+
+/* Section Headings */
+
+gsap.utils.toArray("section h2")
+.forEach((heading) => {
+
+  gsap.from(heading, {
+
+    scrollTrigger: {
+      trigger: heading,
+      start: "top 85%"
+    },
+
+    opacity: 0,
+    y: 50,
+    duration: 1
+
+  });
+
+});
+
+/* Hero Video Zoom */
+
+const heroVideo =
+document.querySelector(".hero-video");
+
+if(heroVideo){
+
+gsap.to(heroVideo, {
+
+  scale: 1.15,
+
+  scrollTrigger:{
+    trigger:".hero",
+    start:"top top",
+    end:"bottom top",
+    scrub:true
+  }
+
+});
+
 }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:#000;
-    color:var(--white);
-    overflow-x:hidden;
-    line-height:1.6;
+/* Timeline Animation */
+
+gsap.from(".step", {
+
+  scrollTrigger:{
+    trigger:".timeline",
+    start:"top 80%"
+  },
+
+  opacity:0,
+  x:120,
+  stagger:.2,
+  duration:1
+
+});
+
+/* Testimonial Float */
+
+gsap.to(".testimonial-card", {
+
+  y:-10,
+
+  duration:2,
+
+  repeat:-1,
+
+  yoyo:true,
+
+  stagger:.2,
+
+  ease:"sine.inOut"
+
+});
+
+/* Applications Glow */
+
+document.querySelectorAll(".glass-card")
+.forEach((card)=>{
+
+card.addEventListener("mouseenter",()=>{
+
+gsap.to(card,{
+boxShadow:"0 0 40px rgba(37,99,235,.35)",
+duration:.3
+});
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+gsap.to(card,{
+boxShadow:"0 0 0 rgba(0,0,0,0)",
+duration:.3
+});
+
+});
+
+});
+
+/* Footer Reveal */
+
+gsap.from("footer",{
+
+scrollTrigger:{
+trigger:"footer",
+start:"top bottom"
+},
+
+opacity:0,
+y:80,
+duration:1
+
+});
+
+console.log(
+"PRESTO Premium Animation System Loaded"
+);
+
+/* ====================================
+   PRESTO POPUP
+==================================== */
+
+const leadPopup = document.getElementById('leadPopup');
+const closePopupBtn = document.querySelector('.lead-close-btn');
+
+if(leadPopup){
+
+    window.addEventListener('load', () => {
+
+        if(
+            (window.location.pathname.endsWith("index.html") ||
+             window.location.pathname === "/" ||
+             window.location.pathname === "") &&
+
+            !sessionStorage.getItem("prestoPopupShown")
+        ){
+
+            setTimeout(() => {
+
+                leadPopup.classList.add('show');
+
+            },1000);
+
+            sessionStorage.setItem(
+                "prestoPopupShown",
+                "true"
+            );
+        }
+
+    });
+
+    closePopupBtn.addEventListener('click', () => {
+
+        leadPopup.classList.remove('show');
+
+    });
+
 }
 
-/* =========================
-   GLOBAL VIDEO BACKGROUND
-========================= */
+async function submitPrestoLead() {
 
-.site-bg-video{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-3;
-    animation:heroZoom 20s linear infinite alternate;
-}
+    const input =
+        document.getElementById("leadInput");
 
-@keyframes heroZoom{
-    from{
-        transform:scale(1);
-    }
-    to{
-        transform:scale(1.08);
-    }
-}
+const value = input.value.trim();
 
-/* =========================
-   CUSTOM CURSOR
-========================= */
+const emailRegex =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-.cursor{
-    position:fixed;
-    width:20px;
-    height:20px;
-    border:1px solid rgba(255,255,255,.5);
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9999;
-    backdrop-filter:blur(5px);
-    transform:translate(-50%,-50%);
-}
+const phoneRegex =
+/^\+?[1-9]\d{6,14}$/;
 
-/* =========================
-   NAVBAR
-========================= */
+if(!value){
 
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:80px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 6%;
-    z-index:1000;
-
-    background:rgba(0,0,0,.35);
-    backdrop-filter:blur(12px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-}
-
-.logo img{
-    height:65px;
-    width:auto;
-    display:block;
-    object-fit:contain;
-}
-
-.nav-links{
-    display:flex;
-    gap:40px;
-    align-items:center;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:white;
-    font-weight:500;
-    position:relative;
-    transition:.3s;
-}
-
-.nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    width:0;
-    height:2px;
-    background:var(--blue);
-    transition:.3s;
-}
-
-.nav-links a:hover::after{
-    width:100%;
-}
-
-.menu-btn{
-    display:none;
-}
-
-/* =========================
-   HERO SECTION
-========================= */
-
-.hero{
-    position:relative;
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-}
-
-.hero-overlay{
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-        180deg,
-        rgba(0,0,0,.45),
-        rgba(0,0,0,.75)
+    showValidationPopup(
+        "Information Required",
+        "Please enter your Email ID or Mobile Number."
     );
 
-    z-index:-1;
+    return;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
+if(
+    !emailRegex.test(value) &&
+    !phoneRegex.test(value)
+){
 
-    max-width:900px;
+    showValidationPopup(
+        "Invalid Entry",
+        "Please enter a valid Email ID or an international Mobile Number."
+    );
 
-    padding:120px 20px 20px;
+    return;
 }
 
-.badge{
-    display:inline-block;
+    const { error } = await supabaseClient
+        .from("presto_leads")
+        .insert([
+            {
+                contact: value
+            }
+        ]);
 
-    padding:10px 20px;
+    if (error) {
 
-    border-radius:999px;
+        console.error(error);
 
-    background:var(--glass);
+        document
+          .getElementById("errorPopup")
+          .classList.add("show");
 
-    backdrop-filter:blur(15px);
+      return;
+    }
 
-    border:1px solid rgba(255,255,255,.08);
+    document.getElementById("leadPopup").classList.remove("show");
 
-    margin-bottom:25px;
+    showSuccessPopup(
+        "Welcome to PRESTO Family!",
+        "Thank you for joining us. You'll receive exclusive offers, product launches and special updates."
+    );
+
+    input.value = "";
 }
 
-.hero h1{
-    font-size:clamp(4rem,10vw,8rem);
-    line-height:.95;
-    font-weight:800;
+function showSuccessPopup(title,message){
 
-    margin-bottom:20px;
+    document.getElementById(
+        "successTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "successMessage"
+    ).textContent = message;
+
+    document
+        .getElementById("successPopup")
+        .classList.add("show");
 }
 
-.hero p{
-    font-size:1.2rem;
-    color:var(--muted);
+function showSuccessPopup(title,message){
 
-    max-width:700px;
-    margin:auto;
+    document.getElementById(
+        "successTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "successMessage"
+    ).textContent = message;
+
+    document
+        .getElementById("successPopup")
+        .classList.add("show");
 }
 
-.hero-buttons{
-    margin-top:35px;
+function closeSuccessPopup(){
 
-    display:flex;
-    justify-content:center;
-    gap:15px;
+    document
+        .getElementById("successPopup")
+        .classList.remove("show");
 
-    flex-wrap:wrap;
+}
+
+function closeErrorPopup(){
+
+    document
+        .getElementById("errorPopup")
+        .classList.remove("show");
+
+}
+
+function showValidationPopup(title,message){
+
+    document.querySelector(
+        "#validationPopup h2"
+    ).textContent = title;
+
+    document.querySelector(
+        "#validationPopup p"
+    ).textContent = message;
+
+    document
+        .getElementById("validationPopup")
+        .classList.add("show");
+}
+
+function closeValidationPopup(){
+
+    document
+        .getElementById("validationPopup")
+        .classList.remove("show");
 }
 
 /* =========================
-   BUTTONS
+   PRESTO MAP
 ========================= */
 
-.btn{
-    padding:16px 30px;
+const mapElement =
+document.getElementById("prestoMap");
 
-    border:none;
+if(mapElement){
 
-    border-radius:999px;
+    const map = L.map("prestoMap", {
+        zoomControl: true
+    }).setView(
+        [22.680061, 88.457765],
+        16
+    );
 
-    cursor:pointer;
+    L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        {
+            attribution: "&copy; OpenStreetMap"
+        }
+    ).addTo(map);
 
-    font-size:1rem;
+    const prestoIcon = L.divIcon({
+        html: `
+        <div style="
+            width:22px;
+            height:22px;
+            background:#e53935;
+            border:4px solid white;
+            border-radius:50%;
+            box-shadow:0 0 25px rgba(229,57,53,.8);
+        "></div>
+        `,
+        className:"",
+        iconSize:[22,22]
+    });
 
-    transition:.3s;
-}
+    L.marker(
+        [22.680061, 88.457765],
+        { icon: prestoIcon }
+    )
+    .addTo(map)
+    .bindPopup(
+        `
+        <div class="custom-popup">
 
-.primary{
-    background:var(--blue);
-    color:white;
-}
+            <h3>Bespoke Innovations Pvt. Ltd.</h3>
 
-.primary:hover{
-    transform:translateY(-4px);
-}
+            <p>
+                PRESTO Office Automations
+            </p>
 
-.secondary{
-    background:transparent;
-    color:white;
+        </div>
+        `
+    )
+    .openPopup();
 
-    border:1px solid rgba(255,255,255,.2);
-}
-
-.secondary:hover{
-    background:rgba(255,255,255,.08);
-}
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-section{
-    padding:120px 8%;
-}
-
-section h2{
-    font-size:clamp(2rem,5vw,4rem);
-    margin-bottom:50px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-    position:relative;
-
-    padding:8px 20px;
-
-    text-align:center;
-
-    color:white;
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    background:rgba(0,0,0,.55);
-
-    border-top:1px solid rgba(255,255,255,.08);
-}
-
-.footer-content{
-    max-width:1200px;
-
-    margin:auto;
-
-    font-size:13px;
-    font-weight:500;
-
-    line-height:1.4;
-
-    letter-spacing:.5px;
 }
 
 /* ====================================
-   OFFERS PAGE
+   CONTACT FORM
 ==================================== */
 
-.offer-tag{
-    display:inline-block;
-    background:#2563eb;
-    padding:8px 14px;
-    border-radius:999px;
-    font-size:12px;
-    margin-bottom:20px;
-}
+const contactForm = document.getElementById("contactForm");
 
-.offers-hero{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+if(contactForm){
 
-    padding-top:140px;
-    padding-bottom:50px;
-}
+    contactForm.addEventListener("submit", async function(e){
 
-.offers-hero .hero-content{
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
-}
+        e.preventDefault();
 
-.offers-hero h1{
-    font-size:clamp(3rem,6vw,4.5rem);
-    margin-bottom:15px;
-}
+        const name =
+        document.getElementById("contactName").value.trim();
 
+        const email =
+        document.getElementById("contactEmail").value.trim();
 
-.offers-grid{
-    width:min(1200px,90%);
-    margin:30px auto 30px;
+        const phone =
+        document.getElementById("contactPhone").value.trim();
 
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-}
+        const message =
+        document.getElementById("contactMessage").value.trim();
 
-.offer-card{
-    min-height:260px;
+        const emailRegex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    padding:28px;
+        const phoneRegex =
+        /^\+?[1-9]\d{6,14}$/;
 
-    display:flex;
-    flex-direction:column;
+        /* Validation */
 
-    background:rgba(20,20,20,.65);
-    backdrop-filter:blur(12px);
+        if(!name){
 
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:24px;
+            showValidationPopup(
+                "Name Required",
+                "Please enter your name."
+            );
 
-    transition:.3s;
-}
+            return;
+        }
 
-.offer-card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(37,99,235,.5);
-    box-shadow:0 15px 40px rgba(37,99,235,.15);
-}
+        if(!emailRegex.test(email)){
 
-.offer-card.presto{
-    border-color:rgba(37,99,235,.45);
-    box-shadow:0 0 25px rgba(37,99,235,.12);
-}
+            showValidationPopup(
+                "Invalid Email",
+                "Please enter a valid email address."
+            );
 
-.offer-card h3{
-    font-size:2rem;
-    margin-bottom:18px;
-}
+            return;
+        }
 
-.offer-card p{
-    color:#d7d7d7;
-    font-size:1rem;
-    line-height:1.7;
+        if(phone && !phoneRegex.test(phone)){
 
-    flex:1;
-    margin-bottom:24px;
-}
+            showValidationPopup(
+                "Invalid Phone Number",
+                "Please enter a valid international phone number."
+            );
 
-.offer-btn{
-    width:100%;
+            return;
+        }
 
-    border:none;
-    outline:none;
+        if(!message){
 
-    background:#2563eb;
-    color:white;
+            showValidationPopup(
+                "Message Required",
+                "Please enter your message."
+            );
 
-    padding:14px;
+            return;
+        }
 
-    border-radius:999px;
+        try{
 
-    cursor:pointer;
-    font-weight:600;
+            const { error } =
+            await supabaseClient
+            .from("contact_messages")
+            .insert([
+                {
+                    name,
+                    email,
+                    phone,
+                    message
+                }
+            ]);
 
-    transition:.3s;
-}
+            if(error){
 
-.offer-btn:hover{
-    background:#1d4ed8;
-}
+                console.error(error);
 
-/* ====================================
-   PRESTO LEAD POPUP
-==================================== */
+                document
+                .getElementById("errorPopup")
+                .classList.add("show");
 
-.lead-popup{
-    position:fixed;
-    inset:0;
+                return;
+            }
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+           showSuccessPopup(
+              "Message Sent Successfully",
+              "Thank you for contacting PRESTO. Our team will get back to you shortly."
+           );
 
-    background:rgba(0,0,0,.65);
+           contactForm.reset();
 
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
+        }
+        catch(err){
 
-    z-index:99999;
+            console.error(err);
 
-    opacity:0;
-    visibility:hidden;
+            document
+            .getElementById("errorPopup")
+            .classList.add("show");
+        }
 
-    transition:.4s ease;
-}
+    });
 
-.lead-popup.show{
-    opacity:1;
-    visibility:visible;
-}
-
-.lead-popup-content{
-
-    width:min(90%,480px);
-
-    background:rgba(15,15,15,.9);
-
-    backdrop-filter:blur(25px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:28px;
-
-    padding:35px;
-
-    text-align:center;
-
-    position:relative;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.4);
-}
-
-.lead-popup-content h2{
-    margin-bottom:12px;
-    font-size:2rem;
-}
-
-.lead-popup-content p{
-    color:#cfcfcf;
-    margin-bottom:25px;
-    line-height:1.7;
-}
-
-.lead-popup-content input{
-    width:100%;
-
-    padding:15px 18px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:rgba(255,255,255,.06);
-
-    color:white;
-
-    margin-bottom:15px;
-}
-
-.lead-popup-content input:focus{
-    outline:1px solid #2563eb;
-}
-
-#joinPrestoBtn{
-    width:100%;
-
-    border:none;
-
-    background:#2563eb;
-
-    color:white;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    font-weight:600;
-
-    transition:.3s;
-}
-
-#joinPrestoBtn:hover{
-    background:#1d4ed8;
-}
-
-.lead-close-btn{
-    position:absolute;
-
-    top:12px;
-    right:16px;
-
-    border:none;
-
-    background:none;
-
-    color:white;
-
-    font-size:28px;
-
-    cursor:pointer;
-}
-
-.success-popup{
-    position:fixed;
-    inset:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:rgba(0,0,0,.75);
-
-    backdrop-filter:blur(12px);
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.4s;
-
-    z-index:99999;
-}
-
-.success-popup.show{
-    opacity:1;
-    visibility:visible;
-}
-
-.success-popup-content{
-    width:min(90%,420px);
-
-    background:rgba(15,15,15,.95);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:35px 30px;
-
-    text-align:center;
-
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.5);
-}
-
-.success-icon{
-    width:70px;
-    height:70px;
-
-    margin:0 auto 20px;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:2rem;
-    font-weight:800;
-
-    color:#fff;
-}
-
-.success-popup h2{
-    margin-bottom:12px;
-}
-
-.success-popup p{
-    color:#cfcfcf;
-    margin-bottom:25px;
-}
-
-.success-popup button{
-    width:100%;
-
-    border:none;
-
-    background:#2563eb;
-    color:#fff;
-
-    padding:14px;
-
-    border-radius:999px;
-
-    cursor:pointer;
-
-    font-weight:600;
-}
-
-.error-icon{
-    width:70px;
-    height:70px;
-
-    margin:0 auto 20px;
-
-    border-radius:50%;
-
-    background:#dc2626;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#fff;
-
-    font-size:2rem;
-    font-weight:800;
-}
-
-.warning-icon{
-    width:70px;
-    height:70px;
-
-    margin:0 auto 20px;
-
-    border-radius:50%;
-
-    background:#f59e0b;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#fff;
-
-    font-size:2rem;
-    font-weight:800;
-}
-
-/* ====================================
-   CONTACT PAGE
-==================================== */
-
-.contact-hero{
-    padding-top:140px;
-    padding-bottom:60px;
-    text-align:center;
-}
-
-.contact-subtitle{
-    max-width:700px;
-    margin:auto;
-    color:#fff;
-    font-weight:600;
-}
-
-.contact-section{
-    padding-top:20px;
-}
-
-.contact-grid{
-    width:min(1200px,90%);
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-
-    gap:24px;
-}
-
-.contact-card{
-    background:rgba(20,20,20,.65);
-
-    backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:30px;
-
-    text-align:center;
-}
-
-.contact-card h3{
-    margin-bottom:15px;
-}
-
-.contact-form-section{
-    padding-top:40px;
-}
-
-.contact-form-container{
-    width:min(800px,90%);
-    margin:auto;
-
-    background:rgba(20,20,20,.65);
-
-    backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:28px;
-
-    padding:40px;
-}
-
-.contact-form-container h2{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.contact-form{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.contact-form input,
-.contact-form textarea{
-    padding:16px;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:14px;
-
-    color:white;
-}
-
-.contact-form textarea{
-    height:180px;
-    resize:none;
-}
-
-.map-section{
-    width:min(1200px,90%);
-    margin:50px auto;
-}
-
-.map-section iframe{
-    width:100%;
-    height:400px;
-
-    border:none;
-
-    border-radius:24px;
-}
-
-.contact-hero{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-.contact-hero .hero-content{
-    max-width:800px;
-    margin:0 auto;
-    text-align:center;
-}
-
-.contact-subtitle{
-    max-width:700px;
-    margin:20px auto 0;
-    text-align:center;
-}
-
-/* =========================
-   PREMIUM MAP
-========================= */
-
-.map-card{
-
-    background:rgba(15,15,15,.65);
-
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:28px;
-
-    padding:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.35);
-}
-
-#prestoMap{
-
-    width:100%;
-    height:500px;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.map-btn-wrap{
-    text-align:center;
-    margin-top:20px;
-}
-
-.leaflet-popup-content-wrapper{
-    background:#111;
-    color:#fff;
-    border-radius:15px;
-}
-
-.leaflet-popup-tip{
-    background:#111;
-}
-
-.custom-popup{
-    text-align:center;
-}
-
-.custom-popup h3{
-    color:#e53935;
-    margin-bottom:8px;
-}
-
-.custom-popup p{
-    color:#000;
-    font-weight:700;
-}
-@media(max-width:768px){
-
-    #prestoMap{
-        height:350px;
-    }
-
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .contact-form-container{
-        padding:25px;
-    }
-
-    .map-section iframe{
-        height:300px;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px){
-  
-    .lead-popup-content{
-        padding:28px 20px;
-    }
-
-    .lead-popup-content h2{
-        font-size:1.7rem;
-    }
-
-
-    .nav-links{
-        position:fixed;
-        top:70px;
-        left:-100%;
-
-        width:100%;
-        height:calc(100vh - 70px);
-
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:flex-start;
-
-        padding-top:30px;
-        gap:10px;
-
-        box-shadow:
-        0 20px 60px rgba(0,0,0,.4),
-        inset 0 1px 0 rgba(255,255,255,.08);
-
-        background:rgba(10,10,10,.55);
-
-        backdrop-filter:blur(25px);
-        -webkit-backdrop-filter:blur(25px);
-
-        border-top:1px solid rgba(255,255,255,.08);
-
-        transition:
-            left .45s cubic-bezier(.22,1,.36,1),
-            opacity .45s ease;
-
-        opacity:0;
-
-        z-index:999;
-    }
-
-    .nav-links.active{
-        left:0;
-        opacity:1;
-    }
-
-    .nav-links a{
-        width:85%;
-
-        padding:18px 24px;
-
-        text-align:center;
-
-        color:#fff;
-
-        border-radius:16px;
-
-        background:rgba(255,255,255,.04);
-
-        border:1px solid rgba(255,255,255,.06);
-
-        backdrop-filter:blur(10px);
-
-        transition:all .3s ease;
-    }
-
-    .nav-links a:hover{
-        background:rgba(37,99,235,.15);
-        border-color:rgba(37,99,235,.4);
-
-        transform:translateY(-2px);
-    }
-
-    .menu-btn{
-        display:block;
-        background:none;
-        border:none;
-        color:white;
-        font-size:28px;
-        cursor:pointer;
-        transition:transform .35s ease;
-    }
-
-    .menu-btn:hover{
-        transform:rotate(90deg);
-    }
-    .menu-btn.active{
-        transform:rotate(90deg);
-    }
-
-    /* Navbar */
-
-    .navbar{
-        height:70px;
-        padding:0 20px;
-    }
-
-    .logo img{
-        height:45px;
-    }
-
-    .nav-links{
-        display:flex;
-    }
-
-
-    /* Hero */
-
-    .offers-hero{
-        height:auto;
-        min-height:220px;
-        padding-top:80px;
-    }
-
-    .offers-hero .hero-content{
-        padding:20px;
-    }
-
-    .badge{
-        font-size:.85rem;
-        padding:8px 16px;
-        margin-bottom:15px;
-    }
-
-    .hero-content h1{
-        font-size:2rem;
-        line-height:1.15;
-        margin-bottom:12px;
-    }
-
-    .hero-content p{
-        font-size:.95rem;
-        line-height:1.6;
-    }
-
-    /* Offers Grid */
-
-    .offers-grid{
-        width:95%;
-        margin:20px auto;
-
-        display:grid;
-        grid-template-columns:1fr;
-
-        gap:18px;
-    }
-
-    .offer-card{
-        width:100%;
-        min-height:auto;
-
-        padding:22px 18px;
-
-        text-align:center;
-    }
-
-    .offer-card h3{
-        font-size:1.8rem;
-        margin-bottom:10px;
-    }
-
-    .offer-card p{
-        font-size:.95rem;
-        line-height:1.6;
-        margin-bottom:18px;
-    }
-
-    .offer-btn{
-        width:100%;
-        padding:14px;
-    }
-
-    /* Footer */
-
-    .footer{
-        padding:12px;
-    }
-
-    .footer-content{
-        font-size:11px;
-        line-height:1.6;
-        text-align:center;
-    }
-
-    /* Cursor Off */
-
-    .cursor{
-        display:none;
-    }
-
-
-    .offer-card p{
-        text-align:center;
-    }
-
-    .offers-subtitle{
-    max-width:100%;
-    font-size:.9rem;
-    padding:0 15px;
-}
-    .offers-hero{
-        padding-top:110px;
-        min-height:260px;
-    }
-    .logo img{
-        height:40px;
-    }
-
-}
-
-@media (min-width:769px) and (max-width:1100px){
-
-
-    .offers-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:20px;
-    }
-
-.offers-subtitle{
-    font-size:1.05rem;
-    font-weight:700;
-    color:#fff;
-
-    text-align:center;
-
-    text-shadow:
-        0 2px 8px rgba(0,0,0,.8);
-
-    padding:0 20px;
-}
 }
