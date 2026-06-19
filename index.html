@@ -21,6 +21,34 @@
 
 <body>
 
+  <!-- Join PRESTO Family Popup -->
+
+  <div id="leadPopup" class="lead-popup">
+
+      <div class="lead-popup-content">
+
+          <button class="lead-close-btn">&times;</button>
+
+          <h2>Join PRESTO Family</h2>
+
+          <p>
+              Get exclusive offers, new product launches,
+              dealer pricing and updates directly from PRESTO.
+          </p>
+
+          <input
+              type="text"
+              id="leadInput"
+              placeholder="Enter Email ID or Mobile Number">
+
+          <button id="joinPrestoBtn" onclick="submitPrestoLead()">
+              Join Now
+          </button>
+
+      </div>
+
+  </div>
+
 <!-- Global Background Video -->
 <video class="site-bg-video" autoplay muted loop playsinline>
     <source src="assets/videos/presto-hero.mp4" type="video/mp4">
@@ -31,7 +59,7 @@
 <header class="navbar">
 
     <div class="logo">
-        <img src="assets/logo/presto-logo.png" alt="PRESTO">
+        <img src="assets/images/presto-logo.png" alt="PRESTO">
     </div>
 
     <nav class="nav-links">
@@ -93,7 +121,74 @@
 
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
+
+<div id="successPopup" class="success-popup">
+
+    <div class="success-popup-content">
+
+        <div class="success-icon">✓</div>
+
+        <h2 id="successTitle">
+            Welcome to PRESTO Family!
+        </h2>
+
+        <p id="successMessage">
+            Thank you for joining us.
+            You'll receive exclusive offers,
+            product launches and special updates.
+        </p>
+
+        <button onclick="closeSuccessPopup()">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+<div id="errorPopup" class="success-popup">
+
+    <div class="success-popup-content">
+
+        <div class="error-icon">✕</div>
+
+        <h2>Oops! Something Went Wrong</h2>
+
+        <p>
+            Your request could not be processed at the moment.
+            Please try again in a few moments.
+        </p>
+
+        <button onclick="closeErrorPopup()">
+            Try Again
+        </button>
+
+    </div>
+
+</div>
+
+<div id="validationPopup" class="success-popup">
+
+    <div class="success-popup-content">
+
+        <div class="warning-icon">!</div>
+
+        <h2>Information Required</h2>
+
+        <p>
+            Please enter your Email ID or Mobile Number.
+        </p>
+
+        <button onclick="closeValidationPopup()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
 
 </body>
 </html>
