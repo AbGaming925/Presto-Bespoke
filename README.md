@@ -1,4 +1,4 @@
-Presto Stamp Website
+#Presto Stamp Website
 
 A modern, responsive corporate website developed for Presto Stamp, a brand operated by Bespoke Innovation Pvt Ltd. The website is designed to showcase custom stamp products, services, offers, and company information through a clean and user-friendly interface.
 
@@ -49,7 +49,7 @@ presto-stamp-website/
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/presto-stamp-website.git
+git clone https://abgaming925.github.io/Presto-Bespoke
 
 2. Open the project folder:
 
