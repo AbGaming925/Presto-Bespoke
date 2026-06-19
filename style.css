@@ -1118,3 +1118,85 @@ section h2{
     padding:0 20px;
 }
 }
+
+
+
+/* ==========================
+   CATEGORY MAINTENANCE PAGE
+========================== */
+
+.maintenance-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:140px 20px 80px;
+}
+
+.maintenance-card{
+    width:100%;
+    max-width:700px;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:32px;
+
+    padding:60px 40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+}
+
+.maintenance-icon{
+    font-size:4rem;
+    margin-bottom:20px;
+
+    animation:spinGear 8s linear infinite;
+}
+
+.maintenance-card h1{
+    font-size:3rem;
+    color:#fff;
+    margin-bottom:20px;
+}
+
+.maintenance-card p{
+    color:rgba(255,255,255,.8);
+    line-height:1.8;
+    max-width:500px;
+    margin:0 auto 35px;
+}
+
+@keyframes spinGear{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .maintenance-card{
+        padding:40px 25px;
+    }
+
+    .maintenance-card h1{
+        font-size:2rem;
+    }
+
+    .maintenance-icon{
+        font-size:3rem;
+    }
+
+}
