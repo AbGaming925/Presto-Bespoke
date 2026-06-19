@@ -4,7 +4,7 @@ A modern, responsive corporate website developed for Presto Stamp, a brand opera
 
 ---
 
-🚀 Features
+# 🚀 Features
 
 - Modern responsive design
 - Mobile, tablet, and desktop compatible
@@ -18,7 +18,7 @@ A modern, responsive corporate website developed for Presto Stamp, a brand opera
 
 ---
 
-🛠️ Technologies Used
+# 🛠️ Technologies Used
 
 - HTML5
 - CSS3
@@ -28,38 +28,39 @@ A modern, responsive corporate website developed for Presto Stamp, a brand opera
 
 ---
 
-📂 Project Structure
-
+## 📂 Project Structure
+```text
 presto-stamp-website/
 │
-├── index.html
-├── offers.html
-├── style.css
-├── script.js
+├── index.html       # Main homepage
+├── offers.html      # Offers page
+├── style.css        # Website styling
+├── script.js        # JavaScript functionality
 ├── assets/
 │   ├── images/
 │   ├── logos/
 │   └── icons/
 │
 └── README.md
-
+```
 ---
 
-💻 Installation
+## 💻 Installation
 
 1. Clone the repository:
-
+```bash
 git clone https://abgaming925.github.io/Presto-Bespoke
+```
 
 2. Open the project folder:
-
+```bash
 cd presto-stamp-website
-
+```
 3. Open "index.html" in your browser.
 
 ---
 
-📱 Responsive Support
+# 📱 Responsive Support
 
 The website is optimized for:
 
@@ -70,7 +71,7 @@ The website is optimized for:
 
 ---
 
-🏢 Company Information
+# 🏢 Company Information
 
 Bespoke Innovation Pvt Ltd
 
@@ -78,13 +79,13 @@ Presto Stamp provides high-quality custom stamp solutions for businesses, profes
 
 ---
 
-🤝 Contributing
+# 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome. Please create an issue or submit a pull request.
 
 ---
 
-📄 License
+# 📄 License
 
 Copyright © 2026 Bespoke Innovation Pvt Ltd.
 
@@ -92,6 +93,6 @@ All Rights Reserved.
 
 ---
 
-👨‍💻 Developed By
+# 👨‍💻 Developed By
 
 ABSOLUTE BITTU
