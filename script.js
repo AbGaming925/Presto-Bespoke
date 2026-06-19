@@ -358,17 +358,19 @@ console.log(
 const leadPopup = document.getElementById('leadPopup');
 const closePopupBtn = document.querySelector('.lead-close-btn');
 
-if(leadPopup){
+if (leadPopup && closePopupBtn) {
 
     window.addEventListener('load', () => {
 
-        if(!sessionStorage.getItem("prestoPopupShown")){
+        console.log("Popup check running");
+
+        if (!sessionStorage.getItem("prestoPopupShown")) {
 
             setTimeout(() => {
 
                 leadPopup.classList.add('show');
 
-            },1000);
+            }, 1000);
 
             sessionStorage.setItem(
                 "prestoPopupShown",
@@ -377,8 +379,6 @@ if(leadPopup){
         }
 
     });
-
-}
 
     closePopupBtn.addEventListener('click', () => {
 
