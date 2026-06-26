@@ -3,7 +3,7 @@
    Premium Animation System
 ===================================== */
 const SUPABASE_URL =
-"https://luypflhqfvxgylmqvjov.supabase.co";
+"https://luyflhqfvzeylncvjgov.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_6zENG3qzHDIkLUcS7GrUaA_shpteFT6";
@@ -358,31 +358,27 @@ console.log(
 const leadPopup = document.getElementById('leadPopup');
 const closePopupBtn = document.querySelector('.lead-close-btn');
 
-if (leadPopup && closePopupBtn) {
+if(leadPopup){
 
-    window.addEventListener('load', () => {
+    if(!localStorage.getItem('prestoPopupShown')){
 
-        console.log("Popup check running");
-
-        if (!sessionStorage.getItem("prestoPopupShown")) {
+        window.addEventListener('load', () => {
 
             setTimeout(() => {
 
                 leadPopup.classList.add('show');
 
-            }, 1000);
+            }, 2000);
 
-            sessionStorage.setItem(
-                "prestoPopupShown",
-                "true"
-            );
-        }
+        });
 
-    });
+    }
 
     closePopupBtn.addEventListener('click', () => {
 
         leadPopup.classList.remove('show');
+
+        localStorage.setItem('prestoPopupShown','yes');
 
     });
 
@@ -393,36 +389,12 @@ async function submitPrestoLead() {
     const input =
         document.getElementById("leadInput");
 
-const value = input.value.trim();
+    const value = input.value.trim();
 
-const emailRegex =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const phoneRegex =
-/^\+?[1-9]\d{6,14}$/;
-
-if(!value){
-
-    showValidationPopup(
-        "Information Required",
-        "Please enter your Email ID or Mobile Number."
-    );
-
-    return;
-}
-
-if(
-    !emailRegex.test(value) &&
-    !phoneRegex.test(value)
-){
-
-    showValidationPopup(
-        "Invalid Entry",
-        "Please enter a valid Email ID or an international Mobile Number."
-    );
-
-    return;
-}
+    if (!value) {
+        alert("Please enter Email or Mobile Number");
+        return;
+    }
 
     const { error } = await supabaseClient
         .from("presto_leads")
@@ -436,265 +408,41 @@ if(
 
         console.error(error);
 
-        document
-          .getElementById("errorPopup")
-          .classList.add("show");
+        alert(
+            "Failed to save. Please try again."
+        );
 
-      return;
+        return;
     }
 
-    document.getElementById("leadPopup").classList.remove("show");
-
-    showSuccessPopup(
-        "Welcome to PRESTO Family!",
-        "Thank you for joining us. You'll receive exclusive offers, product launches and special updates."
+    alert(
+        "Thank you for joining PRESTO Family!"
     );
 
-    input.value = "";
-}
-
-function showSuccessPopup(title,message){
-
-    document.getElementById(
-        "successTitle"
-    ).textContent = title;
-
-    document.getElementById(
-        "successMessage"
-    ).textContent = message;
-
     document
-        .getElementById("successPopup")
-        .classList.add("show");
+        .getElementById("leadPopup")
+        .style.display = "none";
 }
 
-function showSuccessPopup(title,message){
-
-    document.getElementById(
-        "successTitle"
-    ).textContent = title;
-
-    document.getElementById(
-        "successMessage"
-    ).textContent = message;
-
-    document
-        .getElementById("successPopup")
-        .classList.add("show");
-}
-
-function closeSuccessPopup(){
-
-    document
-        .getElementById("successPopup")
-        .classList.remove("show");
-
-}
-
-function closeErrorPopup(){
-
-    document
-        .getElementById("errorPopup")
-        .classList.remove("show");
-
-}
-
-function showValidationPopup(title,message){
-
-    document.querySelector(
-        "#validationPopup h2"
-    ).textContent = title;
-
-    document.querySelector(
-        "#validationPopup p"
-    ).textContent = message;
-
-    document
-        .getElementById("validationPopup")
-        .classList.add("show");
-}
-
-function closeValidationPopup(){
-
-    document
-        .getElementById("validationPopup")
-        .classList.remove("show");
-}
-
-/* =========================
-   PRESTO MAP
-========================= */
-
-const mapElement =
-document.getElementById("prestoMap");
-
-if(mapElement){
-
-    const map = L.map("prestoMap", {
-        zoomControl: true
-    }).setView(
-        [22.680061, 88.457765],
-        16
-    );
-
-    L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-        {
-            attribution: "&copy; OpenStreetMap"
-        }
-    ).addTo(map);
-
-    const prestoIcon = L.divIcon({
-        html: `
-        <div style="
-            width:22px;
-            height:22px;
-            background:#e53935;
-            border:4px solid white;
-            border-radius:50%;
-            box-shadow:0 0 25px rgba(229,57,53,.8);
-        "></div>
-        `,
-        className:"",
-        iconSize:[22,22]
-    });
-
-    L.marker(
-        [22.680061, 88.457765],
-        { icon: prestoIcon }
-    )
-    .addTo(map)
-    .bindPopup(
-        `
-        <div class="custom-popup">
-
-            <h3>Bespoke Innovations Pvt. Ltd.</h3>
-
-            <p>
-                PRESTO Office Automations
-            </p>
-
-        </div>
-        `
-    )
-    .openPopup();
-
-}
 
 /* ====================================
-   CONTACT FORM
+   CATEGORY CARD NAVIGATION
 ==================================== */
 
-const contactForm = document.getElementById("contactForm");
+document.querySelectorAll(".category-card").forEach(function(card){
 
-if(contactForm){
+    card.onclick=function(){
 
-    contactForm.addEventListener("submit", async function(e){
+        var link=this.querySelector("a");
 
-        e.preventDefault();
+        if(link){
 
-        const name =
-        document.getElementById("contactName").value.trim();
-
-        const email =
-        document.getElementById("contactEmail").value.trim();
-
-        const phone =
-        document.getElementById("contactPhone").value.trim();
-
-        const message =
-        document.getElementById("contactMessage").value.trim();
-
-        const emailRegex =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        const phoneRegex =
-        /^\+?[1-9]\d{6,14}$/;
-
-        /* Validation */
-
-        if(!name){
-
-            showValidationPopup(
-                "Name Required",
-                "Please enter your name."
-            );
-
-            return;
-        }
-
-        if(!emailRegex.test(email)){
-
-            showValidationPopup(
-                "Invalid Email",
-                "Please enter a valid email address."
-            );
-
-            return;
-        }
-
-        if(phone && !phoneRegex.test(phone)){
-
-            showValidationPopup(
-                "Invalid Phone Number",
-                "Please enter a valid international phone number."
-            );
-
-            return;
-        }
-
-        if(!message){
-
-            showValidationPopup(
-                "Message Required",
-                "Please enter your message."
-            );
-
-            return;
-        }
-
-        try{
-
-            const { error } =
-            await supabaseClient
-            .from("contact_messages")
-            .insert([
-                {
-                    name,
-                    email,
-                    phone,
-                    message
-                }
-            ]);
-
-            if(error){
-
-                console.error(error);
-
-                document
-                .getElementById("errorPopup")
-                .classList.add("show");
-
-                return;
-            }
-
-           showSuccessPopup(
-              "Message Sent Successfully",
-              "Thank you for contacting PRESTO. Our team will get back to you shortly."
-           );
-
-           contactForm.reset();
+            window.location=link.href;
 
         }
-        catch(err){
 
-            console.error(err);
+    };
 
-            document
-            .getElementById("errorPopup")
-            .classList.add("show");
-        }
+});
 
-    });
 
-}
