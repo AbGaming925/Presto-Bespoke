@@ -34,20 +34,7 @@ requestAnimationFrame(raf);
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Cursor Follower */
 
-const cursor = document.querySelector(".cursor");
-
-window.addEventListener("mousemove", (e) => {
-
-  gsap.to(cursor, {
-    x: e.clientX,
-    y: e.clientY,
-    duration: 0.15,
-    ease: "power2.out"
-  });
-
-});
 
 /* Hero Animation */
 
@@ -123,36 +110,51 @@ revealItems.forEach((item) => {
 
 });
 
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
+/* ====================================
+   MOBILE MENU
+==================================== */
 
-if(menuBtn && navLinks){
+document.addEventListener("DOMContentLoaded", function () {
 
-    menuBtn.addEventListener('click', () => {
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    const menuIcon = menuBtn ? menuBtn.querySelector("i") : null;
 
-        menuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    if (!menuBtn || !navLinks || !menuIcon) return;
+
+    menuBtn.addEventListener("click", function () {
+
+        navLinks.classList.toggle("active");
+
+        if (navLinks.classList.contains("active")) {
+
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-xmark");
+
+        } else {
+
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+
+        }
 
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll(".nav-links a").forEach(function(link){
 
-        link.addEventListener('click', () => {
+        link.addEventListener("click", function(){
 
-            navLinks.classList.remove('active');
-            menuBtn.classList.remove('active');
+            navLinks.classList.remove("active");
+
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
 
         });
 
     });
 
-}
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
 });
+
 
 /* Product Card Hover */
 
@@ -446,3 +448,53 @@ document.querySelectorAll(".category-card").forEach(function(card){
 });
 
 
+const mapDiv = document.getElementById("prestoMap");
+
+if(mapDiv){
+
+    const map = L.map("prestoMap").setView(
+        [22.680061,88.457765],
+        16
+    );
+
+    L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        {
+            attribution:"© OpenStreetMap © CARTO"
+        }
+    ).addTo(map);
+
+    const marker = L.divIcon({
+
+    html: `
+        <i class="fa-solid fa-location-dot"
+           style="
+                color:#e53935;
+                font-size:42px;
+                filter:drop-shadow(0 0 10px rgba(229,57,53,.6));
+           ">
+        </i>
+    `,
+
+    className: "presto-marker",
+
+    iconSize: [42,42],
+
+    iconAnchor: [21,42],
+
+    popupAnchor: [0,-38]
+
+});
+
+L.marker(
+    [22.680061,88.457765],
+    { icon: marker }
+).addTo(map)
+
+    .bindPopup(
+        "<b style='color:black'>PRESTO Office Automations</b><br>Bespoke Innovations Pvt. Ltd."
+    )
+
+    .openPopup();
+
+}
