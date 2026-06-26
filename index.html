@@ -11,7 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -54,8 +56,6 @@
     <source src="assets/videos/presto-hero.mp4" type="video/mp4">
 </video>
 
-<div class="cursor"></div>
-
 <header class="navbar">
 
     <div class="logo">
@@ -67,10 +67,17 @@
         <a href="offers.html">Exclusive Offers</a>
         <a href="category.html">Category</a>
         <a href="contact.html">Contact</a>
+        <a
+    href="https://eleganzastamps.com/"
+    target="_blank"
+    title="Buy Online">
+
+    <i class="fas fa-cart-shopping"></i>
+
+</a>
     </nav>
 
-    <button class="menu-btn">☰</button>
-
+    <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
 </header>
 
 <section class="hero">
@@ -123,72 +130,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
-
-<div id="successPopup" class="success-popup">
-
-    <div class="success-popup-content">
-
-        <div class="success-icon">✓</div>
-
-        <h2 id="successTitle">
-            Welcome to PRESTO Family!
-        </h2>
-
-        <p id="successMessage">
-            Thank you for joining us.
-            You'll receive exclusive offers,
-            product launches and special updates.
-        </p>
-
-        <button onclick="closeSuccessPopup()">
-            Continue
-        </button>
-
-    </div>
-
-</div>
-
-<div id="errorPopup" class="success-popup">
-
-    <div class="success-popup-content">
-
-        <div class="error-icon">✕</div>
-
-        <h2>Oops! Something Went Wrong</h2>
-
-        <p>
-            Your request could not be processed at the moment.
-            Please try again in a few moments.
-        </p>
-
-        <button onclick="closeErrorPopup()">
-            Try Again
-        </button>
-
-    </div>
-
-</div>
-
-<div id="validationPopup" class="success-popup">
-
-    <div class="success-popup-content">
-
-        <div class="warning-icon">!</div>
-
-        <h2>Information Required</h2>
-
-        <p>
-            Please enter your Email ID or Mobile Number.
-        </p>
-
-        <button onclick="closeValidationPopup()">
-            OK
-        </button>
-
-    </div>
-
-</div>
-
 
 </body>
 </html>
