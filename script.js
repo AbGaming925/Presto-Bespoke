@@ -444,9 +444,6 @@ async function submitPrestoLead() {
 
     input.value = "";
 
-    document
-        .getElementById("leadPopup")
-        .style.display = "none";
 }
 
 
@@ -525,9 +522,9 @@ L.marker(
 
 function showSuccessPopup(title, message){
 
-    document.querySelector("#successPopup h2").textContent = title;
+    document.getElementById("successTitle").textContent = title;
 
-    document.querySelector("#successPopup p").textContent = message;
+    document.getElementById("successMessage").textContent = message;
 
     document.getElementById("successPopup").classList.add("show");
 
@@ -543,11 +540,11 @@ function closeSuccessPopup(){
 
 function showErrorPopup(title, message){
 
-    document.querySelector("#errorPopup h2").textContent = title;
+    document.getElementById("errorTitle").textContent = title;
 
-    document.querySelector("#errorPopup p").textContent = message;
+    document.getElementById("errorMessage").textContent = message;
 
-    document.getElementById("errorPopup").classList.add("show");
+     document.getElementById("errorPopup").classList.add("show");
 
 }
 
@@ -560,9 +557,9 @@ function closeErrorPopup(){
 
 function showValidationPopup(title, message){
 
-    document.querySelector("#validationPopup h2").textContent = title;
+    document.getElementById("validationTitle").textContent = title;
 
-    document.querySelector("#validationPopup p").textContent = message;
+    document.getElementById("validationMessage").textContent = message;
 
     document.getElementById("validationPopup").classList.add("show");
 
@@ -619,9 +616,7 @@ if(contactForm){
 
                 phone:phone,
 
-                message:message,
-
-                lead_type:"Contact Form"
+                message:message
 
             }]);
 
