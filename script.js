@@ -511,3 +511,55 @@ L.marker(
     .openPopup();
 
 }
+
+
+function showSuccessPopup(title, message){
+
+    document.querySelector("#successPopup h2").textContent = title;
+
+    document.querySelector("#successPopup p").textContent = message;
+
+    document.getElementById("successPopup").classList.add("show");
+
+}
+
+function closeSuccessPopup(){
+
+    document.getElementById("successPopup").classList.remove("show");
+
+}
+
+
+
+function showErrorPopup(title, message){
+
+    document.querySelector("#errorPopup h2").textContent = title;
+
+    document.querySelector("#errorPopup p").textContent = message;
+
+    document.getElementById("errorPopup").classList.add("show");
+
+}
+
+function closeErrorPopup(){
+
+    document.getElementById("errorPopup").classList.remove("show");
+
+}
+
+
+function showValidationPopup(title, message){
+
+    document.querySelector("#validationPopup h2").textContent = title;
+
+    document.querySelector("#validationPopup p").textContent = message;
+
+    document.getElementById("validationPopup").classList.add("show");
+
+}
+
+function closeValidationPopup(){
+
+    document.getElementById("validationPopup").classList.remove("show");
+
+}
