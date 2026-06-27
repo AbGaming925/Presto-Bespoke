@@ -394,8 +394,14 @@ async function submitPrestoLead() {
     const value = input.value.trim();
 
     if (!value) {
-        alert("Please enter Email or Mobile Number");
-        return;
+
+       showValidationPopup(
+           "Information Required",
+           "Please enter your Email ID or Mobile Number."
+       );
+
+       return;
+
     }
 
     const { error } = await supabaseClient
@@ -410,16 +416,23 @@ async function submitPrestoLead() {
 
         console.error(error);
 
-        alert(
-            "Failed to save. Please try again."
+        showErrorPopup(
+           "Failed to Save",
+           error.message
         );
 
         return;
+
     }
 
-    alert(
-        "Thank you for joining PRESTO Family!"
+    showSuccessPopup(
+       "Welcome to PRESTO Family!",
+       "Thank you for joining us. You'll receive exclusive    offers, product launches and special updates."
     );
+
+    leadPopup.classList.remove("show");
+
+    input.value = "";
 
     document
         .getElementById("leadPopup")
