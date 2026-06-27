@@ -357,30 +357,39 @@ console.log(
    PRESTO POPUP
 ==================================== */
 
-const leadPopup = document.getElementById('leadPopup');
-const closePopupBtn = document.querySelector('.lead-close-btn');
+const leadPopup =
+document.getElementById("leadPopup");
 
-if(leadPopup){
+const closePopupBtn =
+document.querySelector(".lead-close-btn");
 
-    if(!localStorage.getItem('prestoPopupShown')){
+const isHomePage =
 
-        window.addEventListener('load', () => {
+window.location.pathname.endsWith("/")
 
-            setTimeout(() => {
+||
 
-                leadPopup.classList.add('show');
+window.location.pathname.endsWith("index.html")
 
-            }, 2000);
+||
 
-        });
+window.location.pathname === "";
 
-    }
+if(leadPopup && closePopupBtn && isHomePage){
 
-    closePopupBtn.addEventListener('click', () => {
+    window.addEventListener("load",()=>{
 
-        leadPopup.classList.remove('show');
+        setTimeout(()=>{
 
-        localStorage.setItem('prestoPopupShown','yes');
+            leadPopup.classList.add("show");
+
+        },1500);
+
+    });
+
+    closePopupBtn.addEventListener("click",()=>{
+
+        leadPopup.classList.remove("show");
 
     });
 
@@ -561,5 +570,80 @@ function showValidationPopup(title, message){
 function closeValidationPopup(){
 
     document.getElementById("validationPopup").classList.remove("show");
+
+}
+
+/* ====================================
+   CONTACT FORM
+==================================== */
+
+const contactForm = document.getElementById("contactForm");
+
+if(contactForm){
+
+    contactForm.addEventListener("submit", async function(e){
+
+        e.preventDefault();
+
+        const name =
+            document.getElementById("contactName").value.trim();
+
+        const email =
+            document.getElementById("contactEmail").value.trim();
+
+        const phone =
+            document.getElementById("contactPhone").value.trim();
+
+        const message =
+            document.getElementById("contactMessage").value.trim();
+
+        if(!name || !email || !message){
+
+            showValidationPopup(
+                "Information Required",
+                "Please fill all required fields."
+            );
+
+            return;
+
+        }
+
+        const { error } = await supabaseClient
+            .from("presto_leads")
+            .insert([{
+
+                name:name,
+
+                email:email,
+
+                phone:phone,
+
+                message:message,
+
+                lead_type:"Contact Form"
+
+            }]);
+
+        if(error){
+
+            console.error(error);
+
+            showErrorPopup(
+                "Submission Failed",
+                error.message
+            );
+
+            return;
+
+        }
+
+        showSuccessPopup(
+            "Message Sent!",
+            "Thank you for contacting PRESTO. We'll get back to you shortly."
+        );
+
+        contactForm.reset();
+
+    });
 
 }
