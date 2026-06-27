@@ -3,7 +3,7 @@
    Premium Animation System
 ===================================== */
 const SUPABASE_URL =
-"https://luyflhqfvzeylncvjgov.supabase.co";
+"https://luypflhqfvxgylmqvjov.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_6zENG3qzHDIkLUcS7GrUaA_shpteFT6";
