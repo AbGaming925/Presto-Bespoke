@@ -441,6 +441,10 @@ async function submitPrestoLead() {
     );
 
     leadPopup.classList.remove("show");
+    sessionStorage.setItem(
+       "homePopup",
+       "1"
+    );
 
     input.value = "";
 
