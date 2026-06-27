@@ -127,6 +127,72 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
 </footer>
+<!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+
+        <div class="success-popup-content">
+
+            <div class="success-icon">✓</div>
+
+            <h2 id="successTitle">
+                Success
+            </h2>
+
+            <p id="successMessage">
+                Operation completed successfully.
+            </p>
+
+            <button onclick="closeSuccessPopup()">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Error Popup -->
+    <div id="errorPopup" class="success-popup">
+
+        <div class="success-popup-content">
+
+            <div class="error-icon">✕</div>
+
+            <h2 id="errorTitle">Oops! Something Went Wrong</h2>
+
+            <p id="errorMessage">
+                Your request could not be processed at the moment.
+                Please try again in a few moments.
+            </p>
+
+            <button onclick="closeErrorPopup()">
+                Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Validation Popup -->
+    <div id="validationPopup" class="success-popup">
+
+        <div class="success-popup-content">
+
+            <div class="warning-icon">!</div>
+
+            <h2 id="validationTitle">Information Required</h2>
+
+            <p id="validationMessage">
+                Please enter your Name, Email ID and Message.
+            </p>
+
+            <button onclick="closeValidationPopup()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
