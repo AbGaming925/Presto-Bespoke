@@ -357,41 +357,42 @@ console.log(
    PRESTO POPUP
 ==================================== */
 
+const isHome =
+    location.pathname.endsWith("index.html") ||
+    location.pathname === "/";
+
 const leadPopup =
-document.getElementById("leadPopup");
+    document.getElementById("leadPopup");
 
 const closePopupBtn =
-document.querySelector(".lead-close-btn");
+    document.querySelector(".lead-close-btn");
 
-const isHomePage =
+if (isHome && leadPopup && closePopupBtn) {
 
-window.location.pathname.endsWith("/")
+    if (!sessionStorage.getItem("homePopup")) {
 
-||
+        window.addEventListener("load", () => {
 
-window.location.pathname.endsWith("index.html")
+            setTimeout(() => {
 
-||
+                leadPopup.classList.add("show");
 
-window.location.pathname === "";
+                sessionStorage.setItem(
+                    "homePopup",
+                    "1"
+                );
 
-if(leadPopup && closePopupBtn && isHomePage){
+            }, 1500);
 
-    window.addEventListener("load",()=>{
+        });
 
-        setTimeout(()=>{
+    }
 
-            leadPopup.classList.add("show");
-
-        },1500);
-
-    });
-
-    closePopupBtn.addEventListener("click",()=>{
+    closePopupBtn.onclick = () => {
 
         leadPopup.classList.remove("show");
 
-    });
+    };
 
 }
 
@@ -609,7 +610,7 @@ if(contactForm){
         }
 
         const { error } = await supabaseClient
-            .from("presto_leads")
+            .from("contact_messages")
             .insert([{
 
                 name:name,
